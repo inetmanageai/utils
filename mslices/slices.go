@@ -79,8 +79,10 @@ func Find[T any](v []T, f func(T) bool) (found T, idx int, err error) {
 	return found, -1, fmt.Errorf("not found")
 }
 
+// สำหรับลบค่าที่ซ้ำกันใน slice ออก
 func SetUnique[T comparable](v []T) (result []T) {
 	seen := make(map[T]struct{})
+	result = make([]T, 0)
 	for _, s := range v {
 		if _, ok := seen[s]; !ok {
 			result = append(result, s)
